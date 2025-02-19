@@ -75,7 +75,7 @@ const DocumentSigner2 = () => {
 
             if (pageNumber) {
                 // Calculate position relative to the page
-                const exactX = offset.x - pagesRef.current[pageNumber - 1].getBoundingClientRect().left - 100;
+                const exactX = offset.x - pagesRef.current[pageNumber - 1].getBoundingClientRect().left - 125;
                 const exactY = offset.y - pageTop - 20;
 
                 setSignatureField({
@@ -98,7 +98,7 @@ const DocumentSigner2 = () => {
             if (signatureField.pageNumber <= pages.length) {
                 const page = pages[signatureField.pageNumber - 1];
                 const { x, y } = signatureField;
-                const width = 200;
+                const width = 220;
                 const height = 40;
 
                 // Convert coordinates to PDF coordinate system
@@ -114,13 +114,13 @@ const DocumentSigner2 = () => {
                     page.drawLine({
                         start: { x: x + i, y: pdfY },
                         end: { x: Math.min(x + i + dashLength, x + width), y: pdfY },
-                        color: rgb(0, 0, 0),
+                        color: rgb(0, 0, 0, 0.6),
                         thickness: 1,
                     });
                     page.drawLine({
                         start: { x: x + i, y: pdfY - height },
                         end: { x: Math.min(x + i + dashLength, x + width), y: pdfY - height },
-                        color: rgb(0, 0, 0),
+                        color: rgb(0, 0, 0, 0.6),
                         thickness: 1,
                     });
                 }
@@ -130,23 +130,23 @@ const DocumentSigner2 = () => {
                     page.drawLine({
                         start: { x: x, y: pdfY - i },
                         end: { x: x, y: pdfY - Math.min(i + dashLength, height) },
-                        color: rgb(0, 0, 0),
+                        color: rgb(0, 0, 0, 0.6),
                         thickness: 1,
                     });
                     page.drawLine({
                         start: { x: x + width, y: pdfY - i },
                         end: { x: x + width, y: pdfY - Math.min(i + dashLength, height) },
-                        color: rgb(0, 0, 0),
+                        color: rgb(0, 0, 0, 0.6),
                         thickness: 1,
                     });
                 }
 
                 // Add signature text
                 page.drawText('Signature here', {
-                    x: x + 60,
+                    x: x + 70,
                     y: pdfY - 25,
                     size: 12,
-                    color: rgb(0, 0, 0),
+                    color: rgb(0, 0, 0, 0.6),
                 });
             }
 
@@ -211,10 +211,10 @@ const DocumentSigner2 = () => {
                                                         position: 'absolute',
                                                         left: `${signatureField.x}px`,
                                                         top: `${signatureField.y}px`,
-                                                        width: '200px',
+                                                        width: '220px',
                                                         height: '40px',
                                                     }}
-                                                    className="border-2 border-dashed border-black rounded p-2 bg-white/50"
+                                                    className="border-2 border-dashed border-black/60 rounded p-2 bg-white/50"
                                                 >
                                                     <span className="block text-gray-500 text-sm text-center">
                                                         Signature here
