@@ -1,12 +1,12 @@
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import SignatureCanvas from './components/signature/Canvas'
+import DocumentSigner3 from './components/Documents/DocumentSigning3'
 
 function App() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <SignatureCanvas />
+      <DocumentSigner4 />
     </DndProvider>
   )
 }
